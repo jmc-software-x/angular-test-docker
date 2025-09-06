@@ -36,7 +36,39 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+
+## Dockerizing the Angular App
+
+To build and run the Angular app in a Docker container:
+
+```bash
+docker build -t my-angular-app .
+docker run -p 8080:80 my-angular-app
+```
+
+The app will be available at `http://localhost:8080`.
+
+## Deploying to Azure Container Apps
+
+1. Build and push your Docker image to Azure Container Registry (ACR):
+
+	```bash
+	az acr build --registry <your-acr-name> --image my-angular-app:latest .
+	```
+
+2. Create a Container App from the image:
+
+	```bash
+	az containerapp create \
+	  --name my-angular-app \
+	  --resource-group <your-resource-group> \
+	  --environment <your-containerapp-env> \
+	  --image <your-acr-name>.azurecr.io/my-angular-app:latest \
+	  --target-port 80 \
+	  --ingress external
+	```
+
+3. Access your app using the URL provided by Azure Container Apps.
 
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
