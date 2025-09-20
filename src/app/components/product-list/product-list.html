@@ -34,4 +34,5 @@
 <div class="pagination-controls">
   <button mat-raised-button color="primary" (click)="prevPage()" [disabled]="currentPage() === 1">Anterior</button>
   <button mat-raised-button color="primary" (click)="nextPage()" [disabled]="products().length < itemsPerPage()">Siguiente</button>
+  <button mat-raised-button color="accent" (click)="loadMoreProducts()">Cargar más productos</button>
 </div>

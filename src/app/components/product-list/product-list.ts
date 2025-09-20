@@ -45,7 +45,14 @@ export class ProductListComponent implements OnInit {
       this.updateTable();
     });
   }
-
+  loadMoreProducts(): void {
+    // Fetch next batch of products from the API and append to allProducts
+    const currentTotal = this.allProducts.length;
+    this.productService.getProducts(10, currentTotal).subscribe((data: any) => {
+      this.allProducts = [...this.allProducts, ...data];
+      this.updateTable();
+    });
+  }
   updateTable(): void {
     let data = this.allProducts;
     if (this.filterText()) {
