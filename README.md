@@ -21,4 +21,7 @@ $ docker rmi mi-angular-app
 $ docker build -t mi-angular-app .
 $ docker run -p 8080:80 mi-angular-app
 
+#Upload to DockeHub
+$ docker tag mi-angular-app jalzdelezz/mi-angular-app:v1
+
 ```
